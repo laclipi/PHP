@@ -1,5 +1,5 @@
 <?php
-// Iniciar la sesión
+// Iniciar la sesión//TIPOS DE VALIDACIONES
 session_start();
 
 // Verificar si el usuario ya ha iniciado sesión-------------------------
@@ -141,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Procesar el formulario normalmente
     //validar si la sesion activa---------------------------------------
     <?php
-// Iniciar la sesión
+// Iniciar la sesión----------------
 session_start();
 
 // Verificar si el usuario está autenticado y tiene una sesión activa
@@ -195,6 +195,86 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // Lógica de autenticación del usuario
     // Aquí se verificarían las credenciales del usuario
     // Si las credenciales son incorrectas, se podrían contar los intentos fallidos
+}
+?>
+//VALIDACIONES POR SESIONES----------------------------------------------
+<?php
+// Iniciar la sesión
+session_start();
+
+// Validación de sesión activa
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    // El usuario está autenticado
+    // Puedes permitir el acceso a áreas protegidas aquí
+} else {
+    // Si el usuario no está autenticado, redirigirlo a la página de inicio de sesión
+    header("location: login.php");
+    exit;
+}
+
+// Manejo de sesiones expiradas
+ini_set('session.gc_maxlifetime', 1800);
+if(isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+    session_unset(); // Desactivar todas las variables de sesión
+    session_destroy(); // Destruir la sesión
+}
+$_SESSION['LAST_ACTIVITY'] = time(); // Actualizar la última actividad
+
+// Regeneración de ID de sesión
+session_regenerate_id(true);
+?>
+// validaciones POR FORMULARIO--------------------------------------------------
+?php
+// Validación de entrada de datos del formulario
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validación del nombre
+    $nombre = $_POST['nombre'];
+    if(empty($nombre)) {
+        $errorNombre = "El campo nombre es obligatorio";
+    } else {
+        // Procesar el nombre
+    }
+
+    // Validación de la contraseña
+    $contraseña = $_POST['contraseña'];
+    if(empty($contraseña)) {
+        $errorContraseña = "El campo contraseña es obligatorio";
+    } else {
+        // Procesar la contraseña
+    }
+
+    // Otras validaciones de campos adicionales si es necesario
+//validaciones con COOKIES
+<?php
+// Validación de Existencia de Cookies:
+if(isset($_COOKIE['nombre_cookie'])) {
+    // La cookie está configurada, puedes acceder a su valor
+    $valorCookie = $_COOKIE['nombre_cookie'];
+} else {
+    // La cookie no está configurada o expiró
+}
+
+// Configuración de Cookies:
+$nombre = "nombre_cookie";
+$valor = "valor_cookie";
+$expiracion = time() + (86400 * 30); // Expira en 30 días
+$path = "/"; // Disponible en todo el sitio
+$dominio = "example.com"; // Cambia esto por tu dominio
+$seguro = true; // Solo se envía sobre HTTPS
+$httpOnly = true; // Solo accesible a través de HTTP
+setcookie($nombre, $valor, $expiracion, $path, $dominio, $seguro, $httpOnly);
+
+// Eliminación de Cookies:
+$expiracion = time() - 3600; // Establece la expiración en una hora atrás
+setcookie($nombre, "", $expiracion, $path, $dominio, $seguro, $httpOnly);
+
+// Validación de Datos de Cookies:
+if(isset($_COOKIE['nombre_cookie'])) {
+    $valor = $_COOKIE['nombre_cookie'];
+    // Realiza la validación necesaria del valor de la cookie
+    // Por ejemplo, verifica si el valor es lo que se espera
+}
+?>
 }
 ?>
 </body>
