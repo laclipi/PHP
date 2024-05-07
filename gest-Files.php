@@ -13,17 +13,36 @@
     // Definir la carpeta base para la gestión de archivos
     $theFolder = $_GET['theFolder'] ?? "C:/xampp/htdocs";
 
+
     // Verificar si se realizó alguna operación (eliminar, renombrar, editar)
     if (isset($_GET['op'])) {
         $op = $_GET['op'];
         if ($op == "delete") {
-            // Operación de eliminación de archivo
-            $file2Delete = $_GET['file'];
-            if (unlink($theFolder . "/" . $file2Delete)) {
-                echo "¡Archivo $file2Delete borrado!<br>";
-            } else {
-                echo "No se pudo borrar el archivo $file2Delete<br>";  
-            }
+            
+
+// Operación de eliminación de archivo
+$file2Delete = $_GET['file'];
+if (unlink($theFolder . "/" . $file2Delete)) {
+    echo "¡Archivo $file2Delete borrado!<br>";
+
+// Mostrar un mensaje de confirmación antes de eliminar
+echo "<script>";
+echo "if(confirm('¿Estás seguro de que quieres eliminar el archivo $file2Delete?')) {";
+echo "window.location.href = '?theFolder=$theFolder&op=confirmDelete&file=$file2Delete';";
+echo "} else {";
+echo "window.location.href = '?theFolder=$theFolder';";
+echo "}";
+echo "</script>";
+} else if ($op == "confirmDelete") {
+$file2Delete = $_GET['file'];
+if (unlink($theFolder . "/" . $file2Delete)) {
+    echo "¡Archivo $file2Delete borrado!<br>";
+} else {
+    echo "No se pudo borrar el archivo $file2Delete<br>";  
+}
+
+}
+
         } else if ($op == "rename") {
             // Operación de renombrar archivo
             $theFile = $_GET["theFile"];
@@ -70,6 +89,7 @@
                 $fullName = $theFolder . "/" . $theFile;
                 $size = filesize($fullName);
                 $lastDate = date("Y-m-d", filemtime($fullName));
+                
                 ?>
                 <tr>
                     <!-- Mostrar el nombre, extensión, tamaño y fecha de modificación del archivo -->
@@ -117,5 +137,29 @@
         <input type="file" name="file">
         <input type="submit" value="Subir">
     </form>
+    <?php
+    
+    //operacion añadir Fila y archivo (mantiene en misma pag) prueba estas fun aparte
+
+/*function novaFila ("tbody", num)  {
+    var novaFila = tbody.insertRow();0
+
+    let cell1 = novaFila.insertCell(0);
+    let cell2 = novaFila.insertCell(1);
+    cell1.textContent = "F"+num+".txt";
+}
+
+
+function addFile() {
+    let laTaula = document.getElementById("laTaula");
+    let num = laTaula.rows.length;
+    console.log("num: ", num);
+    let tbody = laTaula.getElementsByTagName('tbody')[0];
+    novaFila(tbody, num);
+
+}
+
+*/
+?>    
 </body>
 </html>
