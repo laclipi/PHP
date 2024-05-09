@@ -1,80 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publicaciones</title>
-   
-</head>
-<body>
-    <div class="container">
-        <div class="post" id="post1">
-            <h2>Publicación 1</h2>
-            <p>Contenido de la publicación 1.</p>
-            <p><strong>Usuario:</strong> usuario1</p>
-            <p><strong>Nombre:</strong> Nombre Usuario1</p>
-            <p><strong>Email:</strong> usuario1@example.com</p>
-        </div>
-        <div class="post" id="post2">
-            <h2>Publicación 2</h2>
-            <p>Contenido de la publicación 2.</p>
-            <p><strong>Usuario:</strong> usuario2</p>
-            <p><strong>Nombre:</strong> Nombre Usuario2</p>
-            <p><strong>Email:</strong> usuario2@example.com</p>
-        </div>
-        <div class="post" id="post3">
-            <h2>Publicación 3</h2>
-            <p>Contenido de la publicación 3.</p>
-            <p><strong>Usuario:</strong> usuario3</p>
-            <p><strong>Nombre:</strong> Nombre Usuario3</p>
-            <p><strong>Email:</strong> usuario3@example.com</p>
-        </div>
-        <div class="navigation">
-            <button onclick="prevPost()">Anterior</button>
-            <button onclick="nextPost()">Siguiente</button>
-        </div>
-    </div>
-
+    <meta charset=UTF8>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <!-- <link rel="stylesheet" href="estils.css"> -->
+    <title>Post amb id's</title>
     <script>
-     document.addEventListener ("DOMContentLoaded,modifyDOM");
-      
-      let datos=............................................ 
-      let currentPost = 1;
-      const totalPosts = 3;
-
-     function modifyDOM () {
-        let p=document.get getElementById ("texto");
-        p.innerHTML= "TEXTO MODIFICADO";
-
-        let json = "https"................................
-
-
-     }    
-       function fetch () {
-        fetch (https:jsonplaceholder.typicode,com/todos/1);
-       }
-
-        function prevPost() {
-            if (currentPost > 1) {
-                currentPost--;
-                showPost(currentPost);
-            }
+        function modificarDOMTitol() {  // Titol
+        let p= document.getElementById("titol");
+        p.innerHTML = "TUTORIAL JAVA SCRIPT";
         }
 
-        function nextPost() {
-            if (currentPost < totalPosts) {
-                currentPost++;
-                showPost(currentPost);
-            }
+        function modificarDOMText() {  // Text Informació
+        let p= document.getElementById("text");
+        p.innerHTML = "Text modificat Informació. Lorem Ipsum...";
         }
 
-        function showPost(postNumber) {
-            const posts = document.querySelectorAll('.post');
-            posts.forEach(post => post.style.display = 'none');
-            document.getElementById(`post${postNumber}`).style.display = 'block';
+
+        function modificarDOMTNomUsuari() {  // Titol
+        let p= document.getElementById("nom_usuari");
+        p.innerHTML = "Maria Alonso";
         }
 
-        showPost(currentPost);
+        function principi() { // CRIDA A LA FUNCIÓ amb un Botó:
+        let boton = document.getElementById('miBoton'); // Obtener el botón por su ID. Títol
+        let botoTitol = document.getElementById('BotoTitol'); // Botó pel Títol
+        let botoNomUsuari = document.getElementById('BotoNomUsuari'); // Botó pel Nom d'usuari
+        
+        // Asignar la función al evento clic del botón:
+        boton.addEventListener('click', modificarDOMText);   
+        botoTitol.addEventListener('click', modificarDOMTitol);   
+        botoNomUsuari.addEventListener('click', modificarDOMTNomUsuari);   
+        }
+
+        document.addEventListener("DOMContentLoaded", principi); // Carrega el JS quan s'ha carregat tot la pàgina
     </script>
+</head>
+
+<body>
+    <div>
+        <h1>Post 2</h1>
+        <div> <!-- Post -->
+            <h2>TÍTOL:</h2>
+            <p id="titol"></p>
+
+            <h2>INFORMACIÓ:</h2>
+            <p id="text"></p>
+        </div>
+
+        <div> <!-- User -->
+            <h2>NOM D'USUARI:</h2>
+            <p id="nom_usuari"></p>
+
+            <h2>E-MAIL:</h2>
+            <p id="email"></p>
+
+            <h2>NOM D'EMPRESA:</h2>
+            <p id="nom-empresa"></p>
+        </div> 
+
+    <!-- BOTÓ PER CRIDA A LA FUNCIÓ:  -->      
+    <div><button id="BotoTitol">Títol >></button></div>
+    <div><button id="miBoton">Informació >></button></div>
+    <div><button id="BotoNomUsuari">Nom d'usuari >></button></div>
+            
+    <!-- BOTONS Back i Previous:         
+            <a href="#">&#8249; &#8249; Back</a>
+            <a href="#"> Next &#8250; &#8250;</a> -->
+
+
+            <!-- Botons per si poso Estils:
+            <a href="#" class="previous round">&#8249;</a>
+            <a href="#" class="next round">&#8250;</a> 
+            -->
+
+        <!-- <button onclick="goBack()">Go Back</button> -->
+        </div>
 </body>
+
 </html>
