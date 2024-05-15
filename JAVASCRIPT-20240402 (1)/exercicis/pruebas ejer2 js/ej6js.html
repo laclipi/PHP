@@ -1,0 +1,28 @@
+<HTML>
+    <HEAD>
+        <SCRIPT>
+           // Array de letras para el cálculo del DNI
+var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+
+// Pedir al usuario que ingrese su número de DNI y la letra
+var numeroDNI = parseInt(prompt("Por favor, ingresa tu número de DNI:"));
+var letraUsuario = prompt("Por favor, ingresa la letra de tu DNI:");
+
+// Comprobar si el número de DNI es válido
+if (numeroDNI < 0 || numeroDNI > 99999999) {
+    alert("El número de DNI proporcionado no es válido.");
+} else {
+    // Calcular la letra del DNI
+    var resto = numeroDNI % 23;
+    var letraCalculada = letras[resto];
+
+    // Comparar la letra calculada con la letra indicada por el usuario
+    if (letraCalculada !== letraUsuario.toUpperCase()) {
+        alert("La letra que has indicado no es correcta.");
+    } else {
+        alert("El número y la letra del DNI son correctos.");
+    }
+} 
+</SCRIPT>
+    </HEAD>
+</HTML>

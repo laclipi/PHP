@@ -1,0 +1,51 @@
+<HTML>
+    <HEAD>
+        <SCRIPT>
+            function getRandom(min, max) {
+                let value = Math.random() * (max - min) + min;
+                return parseInt(value);
+            
+            }
+
+            function print(missatge) {
+                console.log(missatge);
+                missatge+="<br>";
+                //document.getElementById("sortida").innerHTML+=missatge;
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                let theNumber = getRandom(1, 100);
+                console.log(theNumber);
+
+                let end = false;
+
+                while (!end) {
+                    
+                    //print("Quin número creus que és?. En cas de voler abandonar escriu -1");
+                    n = prompt("Quin número creus que és?. En cas de voler abandonar escriu -1");
+                        
+                    if (n<0) {
+                        print("Gràcies per participar. Fins aviat");
+                        end = true;
+                    }
+                    else if (n < theNumber) {
+
+                        print("El nombre que cerques és més gran");
+                    }
+                    else if (n > theNumber) {
+                        print("El nombre que cerques és més petit");
+                    }
+                    else if (n == theNumber) {
+                        print("Ho has encertat era el "+theNumber+"!!");
+                        end = true;
+                    }
+                }
+
+            });
+        </SCRIPT>        
+    </HEAD>
+
+    <BODY>
+        <DIV id="sortida"></DIV>
+    </BODY>
+</HTML>

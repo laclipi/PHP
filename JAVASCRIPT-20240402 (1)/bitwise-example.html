@@ -1,0 +1,40 @@
+<HTML>
+
+    <HEAD>
+        <script>
+            //PORTA_A|PORTA_B|PORTA_C|PORTA_D
+            // 1000: 2^3: 8
+            const PORTA_A = 8;
+            // 0100: 2^2: 4
+            const PORTA_B = 4;
+            // 0010: 2^1: 2
+            const PORTA_C = 2;
+            // 0001: 2^0: 1
+            const PORTA_D = 1;
+
+
+            function estaLaPortaOberta(estat, numPorta) {
+                res = (estat & numPorta);
+                return (res==numPorta);
+            }
+
+            let estat;
+
+            // Test
+            console.log("1111");
+            estat = 15; // 1111 //=> PORTA_A && PORTA_B && PORTA_C && PORTA_D
+            console.log("PORTA_A", estaLaPortaOberta(estat, PORTA_A));
+            console.log("PORTA_B", estaLaPortaOberta(estat, PORTA_B));
+            console.log("PORTA_C", estaLaPortaOberta(estat, PORTA_C));
+            console.log("PORTA_D", estaLaPortaOberta(estat, PORTA_D));
+
+            console.log("\n1010");
+            estat = 10; // 1010 //=> PORTA_A && !PORTA_B && PORTA_C && !PORTA_D
+            console.log("PORTA_A", estaLaPortaOberta(estat, PORTA_A));
+            console.log("PORTA_B", estaLaPortaOberta(estat, PORTA_B));
+            console.log("PORTA_C", estaLaPortaOberta(estat, PORTA_C));
+            console.log("PORTA_D", estaLaPortaOberta(estat, PORTA_D));
+
+        </script>
+    </HEAD>
+</HTML>

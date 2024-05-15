@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparador de números</title>
+    <!-- Aquí puedes enlazar tu archivo JavaScript externo si lo prefieres -->
+    <!-- <script src="ruta/a/tu/archivo.js"></script> -->
+    </head>
+    <body>
+
+    </body>
+    <script>
+
+// Almacenar el mensaje en una variable
+var mensaje = "Hola Mundo! Que fácil es usar 'comillas simples' y \"comillas dobles\"";
+
+// Mostrar el mensaje
+console.log(mensaje);
+
+// Función que solicita cadenas de texto hasta que se presiona "cancelar"
+function solicitarCadenas() {
+    var cadenas = []; // Array para almacenar las cadenas ingresadas
+
+    // Bucle para solicitar cadenas hasta que se presiona "cancelar"
+    while (true) {
+        var cadena = prompt("Por favor, ingresa una cadena de texto:");
+        if (cadena === null) {
+            break; // Salir del bucle si se presiona "cancelar"
+        }
+        cadenas.push(cadena); // Agregar la cadena al array
+    }
+
+    // Concatenar todas las cadenas con un guion ("-")
+    var resultado = cadenas.join(" - ");
+
+    // Mostrar el resultado en la consola
+    console.log("Cadenas concatenadas:", resultado);
+}
+
+// Mostrar un mensaje adicional después del primer mensaje
+console.log("Soy el primer script");
+
+// Llamar a la función que solicita las cadenas de texto
+solicitarCadenas();
+
+//En este código, el mensaje se almacena en una variable llamada mensaje y se muestra en la consola utilizando console.log(). El resto del script permanece igual.
+</script>
+</html>

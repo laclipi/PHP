@@ -1,0 +1,30 @@
+<HTML>
+
+    <head>
+        <script>
+            function factorialRecursiu(n) {
+                if (n === 0 || n === 1) {
+                    return 1;
+                } else {
+                    return n * factorialRecursiu(n - 1);
+                }
+            }
+            function factorialIteratiu(n) {
+                // TO-DO
+                return 1;
+            }
+
+            for (let n=0; n<6; n++) {
+                let res1 = factorialRecursiu(n);
+                console.log("factorialIteratiu("+n+")", res1);
+
+                let res2 = factorialIteratiu(n);
+                console.log("factorialIteratiu("+n+")", res2);
+            }
+
+        </script>
+    </head>
+    <body>
+
+    </body>
+</HTML>

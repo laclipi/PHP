@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Tamaño del Texto</title>
+    <style>
+        #texto {
+            font-size: 14px; /* Tamaño original del texto */
+        }
+    </style>
+</head>
+<body>
+    <p id="texto">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. 
+        Phasellus libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo 
+        ultricies, turpis. Quisque sapien nunc, posuere vitae, rutrum et, luctus at, pede. 
+        Pellentesque massa ante, ornare id, aliquam vitae, ultrices porttitor, pede. Nullam sit 
+        amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis, 
+        faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio 
+        urna consequat arcu, at posuere ante quam non dolor. Lorem ipsum dolor sit amet, 
+        consectetuer adipiscing elit. Duis scelerisque.
+    </p>
+    <button id="agrandar">Agrandar</button>
+    <button id="reducir">Reducir</button>
+    <button id="restablecer">Restablecer</button>
+
+    <script src="modificarTamanioTexto.js"></script>
+</body>
+</html>
+<script>
+
+// Obtener referencias a los elementos
+const texto = document.getElementById('texto');
+const botonAgrandar = document.getElementById('agrandar');
+const botonReducir = document.getElementById('reducir');
+const botonRestablecer = document.getElementById('restablecer');
+
+// Tamaño de texto original
+const tamanoOriginal = 14;
+
+// Función para obtener el tamaño actual del texto
+function obtenerTamanoActual() {
+    return parseInt(window.getComputedStyle(texto).fontSize);
+}
+
+// Función para agrandar el texto
+function agrandarTexto() {
+    let tamanoActual = obtenerTamanoActual();
+    texto.style.fontSize = (tamanoActual + 1) + 'px';
+}
+
+// Función para reducir el texto
+function reducirTexto() {
+    let tamanoActual = obtenerTamanoActual();
+    if (tamanoActual > 1) { // Evitar reducir a menos de 1px
+        texto.style.fontSize = (tamanoActual - 1) + 'px';
+    }
+}
+
+// Función para restablecer el tamaño original del texto
+function restablecerTexto() {
+    texto.style.fontSize = tamanoOriginal + 'px';
+}
+
+// Asignar eventos a los botones
+botonAgrandar.addEventListener('click', agrandarTexto);
+botonReducir.addEventListener('click', reducirTexto);
+botonRestablecer.addEventListener('click', restablecerTexto);
+
+
+</script>

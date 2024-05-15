@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Validación</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body></body>
+
+<script>
+
+// Función que determina si una persona está jubilada según su edad
+function verificarJubilacion(edad) {
+    // Condición para verificar si la edad es mayor que 65
+    if (edad > 65) {
+        // Si la edad es mayor que 65, muestra el mensaje "Estas jubilado"
+        console.log("Estas jubilado");
+    } else {
+        // Si la edad es 65 o menor, muestra el mensaje "Todavía estás trabajando o en el paro"
+        console.log("Todavía estás trabajando o en el paro");
+    }
+}
+
+// Solicita al usuario que ingrese su edad
+// Aquí se utiliza 'prompt' para recibir la edad del usuario
+let edadUsuario = prompt("Por favor, introduce tu edad:");
+
+// Convertimos la entrada del usuario a un número
+edadUsuario = parseInt(edadUsuario);
+
+// Llamamos a la función para verificar la jubilación con la edad proporcionada por el usuario
+verificarJubilacion(edadUsuario);
+</script>

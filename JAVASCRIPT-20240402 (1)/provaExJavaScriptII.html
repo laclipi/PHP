@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Validación</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <form id="miFormulario">
+        <label for="nombre">Nombre: <input type="text" id="nombre" name="nombre"></label>
+        <span id="errorNombre" class="error"></span><br>
+
+        <label for="edad">Edad: <input type="text" id="edad" name="edad"></label>
+        <span id="errorEdad" class="error"></span><br>
+
+        <label for="telefono">Teléfono: <input type="text" id="telefono" name="telefono"></label>
+        <span id="errorTelefono" class="error"></span><br>
+
+        <label for="genero">Género: 
+            <select id="genero" name="genero">
+                <option value="">Seleccione...</option>
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+                <option value="otro">Otro</option>
+            </select>
+        </label>
+        <span id="errorGenero" class="error"></span><br>
+
+        <label for="poblacion">Población: 
+            <select id="poblacion" name="poblacion">
+                <option value="">Seleccione...</option>
+                <option value="urbana">Urbana</option>
+                <option value="rural">Rural</option>
+            </select>
+        </label>
+        <span id="errorPoblacion" class="error"></span><br>
+
+        <label><input type="checkbox" id="condiciones" name="condiciones"> Declaro haber leído y aceptar las condiciones...</label>
+        <span id="errorCondiciones" class="error"></span><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script src="validacion.js"></script>
+</body>
+</html>
+<script>
+
+document.getElementById('miFormulario').addEventListener('submit', function(event) {
+    // Prevent form submission
+    event.preventDefault();
+
+    // Clear previous errors
+    const errores = document.querySelectorAll('.error');
+    errores.forEach(error => error.textContent = '');
+
+    // Retrieve form fields
+    const nombre = document.getElementById('nombre').value.trim();
+    const edad = document.getElementById('edad').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+    const genero = document.getElementById('genero').value;
+    const poblacion = document.getElementById('poblacion').value;
+    const condiciones = document.getElementById('condiciones').checked;
+
+    let isValid = true;
+
+    // Validate nombre
+    if (nombre === '') {
+        document.getElementById('errorNombre').textContent = 'El nombre es obligatorio.';
+        isValid = false;
+    }
+
+    // Validate edad
+    const edadNumero = parseInt(edad, 10);
+    if (edad === '' || isNaN(edadNumero) || edadNumero < 18 || edadNumero > 65) {
+        document.getElementById('errorEdad').textContent = 'La edad debe ser un número entre 18 y 65.';
+        isValid = false;
+    }
+
+    // Validate telefono
+    const telefonoRegex = /^\d{3}-\d{3}-\d{3}$/;
+    if (telefono === '' || !telefonoRegex.test(telefono)) {
+        document.getElementById('errorTelefono').textContent = 'El teléfono debe tener el formato 999-999-999.';
+        isValid = false;
+    }
+
+    // Validate genero
+    if (genero === '') {
+        document.getElementById('errorGenero').textContent = 'Debe seleccionar un género.';
+        isValid = false;
+    }
+
+    // Validate poblacion
+    if (poblacion === '') {
+        document.getElementById('errorPoblacion').textContent = 'Debe seleccionar una población.';
+        isValid = false;
+    }
+
+    // Validate condiciones
+    if (!condiciones) {
+        document.getElementById('errorCondiciones').textContent = 'Debe aceptar las condiciones.';
+        isValid = false;
+    }
+
+    // Submit the form if all validations pass
+    if (isValid) {
+        alert('Formulario enviado correctamente.');
+        document.getElementById('miFormulario').submit();
+    }
+});
+</script>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparador de números</title>
+    <!-- Aquí puedes enlazar tu archivo JavaScript externo si lo prefieres -->
+    <!-- <script src="ruta/a/tu/archivo.js"></script> -->
+    <script>
+        var cadenas = []; // Array para almacenar las cadenas ingresadas
+
+// Bucle para solicitar cadenas hasta que se presiona "cancelar"
+while (true) {
+    var cadena = prompt("Por favor, ingresa una cadena de texto:");
+    if (cadena === null) {
+        break; // Salir del bucle si se presiona "cancelar"
+    }
+    cadenas.push(cadena); // Agregar la cadena al array
+}
+
+// Concatenar todas las cadenas con un guion ("-")
+var resultado = cadenas.join(" - ");
+
+// Mostrar el resultado en la consola
+console.log("Cadenas concatenadas:", resultado);

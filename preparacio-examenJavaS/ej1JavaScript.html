@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Validación</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <form id="formularioValidacion">
+        <label for="nombre">Nombre: <input type="text" id="nombre" name="nombre"></label>
+        <span id="errorNombre" class="error"></span><br>
+
+        <label for="apellidos">Apellidos: <input type="text" id="apellidos" name="apellidos"></label>
+        <span id="errorApellidos" class="error"></span><br>
+
+        <label for="direccion">Dirección: <input type="text" id="direccion" name="direccion"></label>
+        <span id="errorDireccion" class="error"></span><br>
+
+        <label for="dni">DNI: <input type="text" id="dni" name="dni"></label>
+        <span id="errorDNI" class="error"></span><br>
+
+        <label for="email">Correo Electrónico: <input type="text" id="email" name="email"></label>
+        <span id="errorEmail" class="error"></span><br>
+
+        <label>Género:</label>
+        <input type="radio" id="generoMasculino" name="genero" value="masculino"> Masculino
+        <input type="radio" id="generoFemenino" name="genero" value="femenino"> Femenino
+        <input type="radio" id="generoOtro" name="genero" value="otro"> Otro
+        <span id="errorGenero" class="error"></span><br>
+
+        <label><input type="checkbox" id="aceptoCondiciones" name="aceptoCondiciones"> Acepto los términos y condiciones</label>
+        <span id="errorCondiciones" class="error"></span><br>
+
+        <label for="observaciones">Observaciones:</label><br>
+        <textarea id="observaciones" name="observaciones"></textarea><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script src="validacionFormulario.js"></script>
+</body>
+</html>
+
+<script>
+document.getElementById('formularioValidacion').addEventListener('submit', function(event) {
+    // Prevent form submission
+    event.preventDefault();
+
+    // Clear previous errors
+    const errores = document.querySelectorAll('.error');
+    errores.forEach(error => error.textContent = '');
+
+    // Retrieve form fields
+    const nombre = document.getElementById('nombre').value.trim();
+    const apellidos = document.getElementById('apellidos').value.trim();
+    const direccion = document.getElementById('direccion').value.trim();
+    const dni = document.getElementById('dni').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const generoMasculino = document.getElementById('generoMasculino').checked;
+    const generoFemenino = document.getElementById('generoFemenino').checked;
+    const generoOtro = document.getElementById('generoOtro').checked;
+    const aceptoCondiciones = document.getElementById('aceptoCondiciones').checked;
+
+    let isValid = true;
+
+    // Validate nombre
+    if (nombre === '') {
+        document.getElementById('errorNombre').textContent = 'El nombre es obligatorio.';
+        isValid = false;
+    }
+
+    // Validate apellidos
+    if (apellidos === '') {
+        document.getElementById('errorApellidos').textContent = 'Los apellidos son obligatorios.';
+        isValid = false;
+    }
+
+    // Validate dirección
+    if (direccion === '') {
+        document.getElementById('errorDireccion').textContent = 'La dirección es obligatoria.';
+        isValid = false;
+    }
+
+    // Validate DNI (simple example, real validation should be more complex)
+    if (dni === '') {
+        document.getElementById('errorDNI').textContent = 'El DNI es obligatorio.';
+        isValid = false;
+    }
+
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email === '' || !emailRegex.test(email)) {
+        document.getElementById('errorEmail').textContent = 'Debe proporcionar un correo electrónico válido.';
+        isValid = false;
+    }
+
+    // Validate genero
+    if (!generoMasculino && !generoFemenino && !generoOtro) {
+        document.getElementById('errorGenero').textContent = 'Debe seleccionar un género.';
+        isValid = false;
+    }
+
+    // Validate condiciones
+    if (!aceptoCondiciones) {
+        document.getElementById('errorCondiciones').textContent = 'Debe aceptar los términos y condiciones.';
+        isValid = false;
+    }
+
+    // Submit the form if all validations pass
+    if (isValid) {
+        alert('Formulario enviado correctamente.');
+        document.getElementById('formularioValidacion').submit();
+    }
+});
+
+
+
+
+
+</script>

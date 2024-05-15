@@ -1,0 +1,20 @@
+// Solicitar el primer número al usuario
+var numero1 = prompt("Por favor, ingresa el primer número:");
+
+// Convertir la entrada a un número
+numero1 = parseFloat(numero1);
+
+// Solicitar el segundo número al usuario
+var numero2 = prompt("Por favor, ingresa el segundo número:");
+
+// Convertir la entrada a un número
+numero2 = parseFloat(numero2);
+
+// Verificar cuál número es mayor
+if (numero1 > numero2) {
+    console.log("El primer número (" + numero1 + ") es mayor que el segundo número (" + numero2 + ").");
+} else if (numero2 > numero1) {
+    console.log("El segundo número (" + numero2 + ") es mayor que el primer número (" + numero1 + ").");
+} else {
+    console.log("Los dos números son iguales.");
+}
